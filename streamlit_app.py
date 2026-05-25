@@ -4,7 +4,7 @@ from huggingface_hub import InferenceClient
 st.title("AI文献整理助手")
 
 # 这里填你的 Hugging Face token
-HF_TOKEN = "hf_把你的token粘贴到这里"
+HF_TOKEN = "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"
 
 client = InferenceClient(
     provider="hf-inference",
