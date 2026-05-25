@@ -27,7 +27,7 @@ if st.button("开始分析"):
 """
 
         response = client.chat.completions.create(
-            model="meta-llama/Llama-3.1-8B-Instruct",
+            model="HuggingFaceH4/zephyr-7b-beta",
             messages=[
                 {"role": "user", "content": prompt}
             ],
