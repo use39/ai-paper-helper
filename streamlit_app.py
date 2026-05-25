@@ -26,13 +26,21 @@ if st.button("开始分析"):
 {text}
 """
 
-        response = client.chat.completions.create(
-            model="HuggingFaceH4/zephyr-7b-beta",
-            messages=[
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=500,
-        )
+        try:
+    response = client.chat.completions.create(
+        model="HuggingFaceH4/zephyr-7b-beta",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=500,
+    )
+
+    result = response.choices[0].message.content
+    st.write("### 分析结果")
+    st.write(result)
+
+except Exception as e:
+    st.error(str(e))
 
         result = response.choices[0].message.content
         st.write("### 分析结果")
