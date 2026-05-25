@@ -3,8 +3,7 @@ from huggingface_hub import InferenceClient
 
 st.title("AI文献整理助手")
 
-# 这里填你的 Hugging Face token
-HF_TOKEN = "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"
+HF_TOKEN = st.secrets["HF_TOKEN"]
 
 client = InferenceClient(
     provider="hf-inference",
@@ -27,23 +26,20 @@ if st.button("开始分析"):
 """
 
         try:
-    response = client.chat.completions.create(
-        model="HuggingFaceH4/zephyr-7b-beta",
-        messages=[
-            {"role": "user", "content": prompt}
-        ],
-        max_tokens=500,
-    )
+            response = client.chat.completions.create(
+                model="HuggingFaceH4/zephyr-7b-beta",
+                messages=[
+                    {"role": "user", "content": prompt}
+                ],
+                max_tokens=500,
+            )
 
-    result = response.choices[0].message.content
-    st.write("### 分析结果")
-    st.write(result)
+            result = response.choices[0].message.content
+            st.write("### 分析结果")
+            st.write(result)
 
-except Exception as e:
-    st.error(str(e))
+        except Exception as e:
+            st.error(str(e))
 
-        result = response.choices[0].message.content
-        st.write("### 分析结果")
-        st.write(result)
     else:
         st.warning("请先粘贴摘要")
